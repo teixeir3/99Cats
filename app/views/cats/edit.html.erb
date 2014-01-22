@@ -1,0 +1,42 @@
+<h1> Current Cat DEETS: </h1>
+<form action="<%= cat_url%>" method="POST" name=:cat>
+  <input type="hidden" name="_method" value="PUT">
+  <p><label for="cat_name">Name:</label></p>
+  <p><input name="cat[name]" id="cat_name" type="text" value="<%= @cat.name %>"></p>
+
+  <p><label for="cat_age">Age:</label></p>
+  <p><input name="cat[age]" id="cat_age" type="text" value="<%= @cat.age %>"></p>
+
+   <p><label for="cat_sex">Sex:</label></p>
+   <% if @cat.name == "m" %>
+   <p><label for="cat_sex_m">Male:</label></p>
+   <p><input name="cat[sex]" id="cat_sex_m" type="radio" checked value = "m"%></p>
+   <p><label for="cat_sex_f">Female:</label></p>
+   <p><input name="cat[sex]" id="cat_sex_f" type="radio" value = "f"></p>
+  <% else %>
+  <p><label for="cat_sex_m">Male:</label></p>
+  <p><input name="cat[sex]" id="cat_sex_m" type="radio" value = "m" %></p>
+  <p><label for="cat_sex_f">Female:</label></p>
+  <p><input name="cat[sex]" id="cat_sex_f" type="radio" checked value = "f" ></p>
+  <% end %>
+
+
+  <p><label for="cat_color">Color:</label></p>
+  <p><select name="cat[color]" id="cat_color">
+    <% ["black", "white", "orange", "gray", "striped"].each do |color| %>
+    <% if @cat.color == color %>
+      <option value="<%= color %>" selected><%= color.capitalize %></option>
+      <% else %>
+      <option value="<%= color %>"><%= color.capitalize %></option>
+      <% end %>
+    <% end %>
+    <!--<option value="black">Black</option>
+    <option value="white">White</option>
+    <option value="orange">Orange</option>
+    <option value="gray">Gray</option>
+    <option value="striped">Striped</option>-->
+  </select></p>
+   <p><label for="cat_birthday">Birthday:</label></p>
+  <p><input name="cat[birthday]" id="cat_birthday" type="date" value="<%= @cat.birthday %>"></p>
+  <p><input type="submit" value="Update my cat deets!">
+</form>
