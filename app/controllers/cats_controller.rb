@@ -5,8 +5,12 @@ class CatsController < ApplicationController
     render :index
   end
 
-  # def new
-#   end
+  def new
+    #needs to build but not save a new cat
+    @cat = Cat.new
+
+    render :new
+  end
 
   def edit
     @cat = Cat.find(params[:id])
@@ -28,6 +32,7 @@ class CatsController < ApplicationController
   def update
     @cat = Cat.find(params[:id])
     if @cat.update_attributes(params[:cat])
+      p @cat.errors
       flash[:notice] = "#{@cat.name}'s deets updated"
       redirect_to cat_url(@cat)
     else

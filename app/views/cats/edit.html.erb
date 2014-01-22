@@ -1,6 +1,2 @@
 <h1> Current Cat DEETS: </h1>
-<form action="<%= cat_url%>" method="POST" name=:cat>
-  <input type="hidden" name="_method" value="PUT">
-  <%= render :partial => "form", :locals => { :cat => @cat } %>
-  <p><input type="submit" value="Update my cat deets!"></p>
-</form>
+  <%= render :partial => "form" %>
