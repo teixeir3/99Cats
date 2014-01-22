@@ -1,0 +1,23 @@
+<h1> New Cat DEETS: </h1>
+<form action="<%= cats_url%>" method="POST" name=:cat>
+  <p><label for="cat_name">Name:</label></p>
+  <p><input name="cat[name]" id="cat_name" type="text"></p>
+  <p><label for="cat_age">Age:</label></p>
+  <p><input name="cat[age]" id="cat_age" type="text"></p>
+   <p><label for="cat_sex">Sex:</label></p>
+   <p><label for="cat_sex_m">Male:</label></p>
+  <p><input name="cat[sex]" id="cat_sex_m" type="radio" value="m"></p>
+  <p><label for="cat_sex_f">Female:</label></p>
+  <p><input name="cat[sex]" id="cat_sex_f" type="radio" value="f"></p>
+  <p><label for="cat_color">Color:</label></p>
+  <p><select name="cat[color]" id="cat_color">
+    <option value="black">Black</option>
+    <option value="white">White</option>
+    <option value="orange">Orange</option>
+    <option value="gray">Gray</option>
+    <option value="striped">Striped</option>
+  </select></p>
+   <p><label for="cat_birthday">Birthday:</label></p>
+  <p><input name="cat[birthday]" id="cat_birthday" type="date"></p>
+  <p><input type="submit" value="Build my cat!">
+</form>

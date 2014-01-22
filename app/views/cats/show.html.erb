@@ -1,13 +1,7 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <h1><%= @cat.name %></h1>
-</head>
-<body>
-  <ul>
-   <% @cat.attributes.each do |attr, val| %>
-   <li> <%= "#{attr} = #{val}" %></li>
-   <%  end %>
-  </ul>
-</body>
-</html>
+<h1><%= @cat.name %></h1>
+<h2>ALL the deets</h2>
+<table>
+  <% @cat.attributes.each do |attr, val| %>
+   <tr><th><%= "#{attr}"%></th><td><%="#{val}" %></td></tr>
+  <%  end %>
+</table>

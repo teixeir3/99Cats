@@ -1,14 +1,7 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <h1>Cats Index</h1>
-</head>
-<body>
-
-  <ul>
-    <% @cats.each do |cat| %>
-      <li><%= link_to(cat.name, cat_url(cat)) %></li>
-    <% end %>
-  </ul>
-</body>
-</html>
+<h1>Cat index</h1>
+<ul>
+  <% @cats.each do |cat| %>
+    <li><a href="<%=cat_url(cat)%>"><%= cat.name %></a></li>
+  <% end %>
+</ul>
+<a href="<%= new_cat_url%>">Create a new cat!</a>
