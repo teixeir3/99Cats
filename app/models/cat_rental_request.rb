@@ -22,6 +22,10 @@ class CatRentalRequest < ActiveRecord::Base
                       ((start_date > ?) OR (end_date < ?))", cat_id, end_date, start_date)
     end
 
+    def pending?
+      true if self.status == "PENDING"
+    end
+
     def overlapping_approved_requests
       overlapping_requests.where("status = 'APPROVED'")
     end
