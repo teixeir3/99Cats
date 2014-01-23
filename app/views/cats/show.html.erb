@@ -1,7 +1,21 @@
 <h1><%= @cat.name %></h1>
 <h2>ALL the deets</h2>
-<table>
-  <% @cat.attributes.each do |attr, val| %>
-   <tr><th><%= "#{attr}"%></th><td><%="#{val}" %></td></tr>
-  <%  end %>
-</table>
+<body>
+  <table>
+    <% @cat.attributes.each do |attr, val| %>
+     <tr><th><%= "#{attr}"%></th><td><%="#{val}" %></td></tr>
+    <%  end %>
+  </table>
+
+  <br> <%= link_to "Rent This Cat!", new_cat_rental_request_url %>
+  <br>
+  <% if @cat.rental_requests.first %>
+    <% req = @cat.rental_requests.first %>
+
+    <p> <%= button_to "Approve", approve_cat_rental_request_url(req)%> </p>
+    <p> <%= button_to "Deny", deny_cat_rental_request_url(req)%>
+
+  <% end %>
+
+  <br> <%= link_to "Index", cats_url %>
+</body>

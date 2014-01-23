@@ -23,7 +23,7 @@ class CatRentalRequest < ActiveRecord::Base
     end
 
     def pending?
-      true if self.status == "PENDING"
+      self.status == "PENDING"
     end
 
     def overlapping_approved_requests
