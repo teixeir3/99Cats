@@ -8,13 +8,20 @@
   </table>
 
   <br> <%= link_to "Rent This Cat!", new_cat_rental_request_url %>
-  <br>
-  <% if @cat.rental_requests.first %>
-    <% req = @cat.rental_requests.first %>
+  <br><br>
+  <% if user_owns_cat?(@cat)%>
+    <% if @rental_request %>
+      <table>
+        <h3> Rental Request:</h3>
+        <% @rental_request.attributes.each do |attr, val| %>
+         <tr><th><%= "#{attr}"%></th><td><%="#{val}" %></td></tr>
+        <%  end %>
+      </table>
 
-    <p> <%= button_to "Approve", approve_cat_rental_request_url(req)%> </p>
-    <p> <%= button_to "Deny", deny_cat_rental_request_url(req)%>
+      <p> <%= button_to "Approve", approve_cat_rental_request_url(@rental_request)%> </p>
+      <p> <%= button_to "Deny", deny_cat_rental_request_url(@rental_request)%>
 
+    <% end %>
   <% end %>
 
   <br> <%= link_to "Index", cats_url %>

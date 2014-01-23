@@ -7,7 +7,8 @@ gem 'rails', '3.2.15'
 
 gem 'sqlite3'
 gem 'bcrypt-ruby', :require => 'bcrypt'
-
+#gem 'bcrypt'
+#gem 'bcrypt-ruby'
 
 # Gems used only for assets and not required
 # in production environments by default.

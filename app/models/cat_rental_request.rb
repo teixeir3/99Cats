@@ -15,6 +15,8 @@ class CatRentalRequest < ActiveRecord::Base
       :primary_key => :id
     )
 
+    has_one :cat_owner, :through => :cat, :source => :owner
+
     def overlapping_requests
       # it conflicts with ours if some other rental's start_date is before our end_date and after our start_date
       # OR if their end date
@@ -50,6 +52,10 @@ class CatRentalRequest < ActiveRecord::Base
       # do this saving in single transaction
 
       transaction do
+        if overlapping_approved_requests.any?
+          return false
+        end
+
         self.status = "APPROVED"
         self.save!
 
@@ -58,6 +64,8 @@ class CatRentalRequest < ActiveRecord::Base
           request.deny!
         end
       end
+
+      true
     end
 
     def deny!

@@ -1,12 +1,20 @@
 class User < ActiveRecord::Base
   attr_accessible :user_name, :password_digest, :session_token
+  attr_reader :password
 
   validates :user_name, :presence => true, :uniqueness => true
-  validates :password_digest, :presence => { :message = "Password can't be blank"}
+  validates :password_digest, :presence => { :message => "Password can't be blank"}
   validates :session_token, :presence => true
   validates :password, :length => { :minimum => 6, :allow_nil => true }
 
   after_initialize :ensure_session_token
+
+  has_many(
+    :cats,
+    :class_name => "Cat",
+    :foreign_key => :user_id,
+    :primary_key => :id
+  )
 
 
   def reset_session_token!
@@ -38,7 +46,7 @@ class User < ActiveRecord::Base
 
   private
 
-  def ensure_sesssion_token
+  def ensure_session_token
     self.session_token ||= User.generate_session_token
   end
 

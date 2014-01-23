@@ -1,0 +1,35 @@
+<form action="<%= users_url %>" method="post">
+  <input
+    name="authenticity_token"
+    type="hidden"
+    value="<%= form_authenticity_token %>">
+
+  <br>
+  <label for="user_user_name">Enter New Username:</label>
+  <input
+    id="user_user_name"
+    name="user[user_name]"
+    type="text">
+  <br>
+  <br>
+    <h4> At least six characters.</h4>
+  <br>
+  <label for="user_password">Enter New Password:</label>
+  <input
+    id="user_password"
+    name="user[password]"
+    type="password">
+
+    <br>
+    <label for="password_confirmation">Confirm Password:</label>
+    <input
+      id="password_confirmation"
+      name="password_confirmation"
+      type="password">
+  <br>
+
+  <input
+    type="submit"
+    value="Login">
+
+</form>

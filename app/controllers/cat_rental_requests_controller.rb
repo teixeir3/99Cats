@@ -1,4 +1,5 @@
 class CatRentalRequestsController < ApplicationController
+  before_filter :require_ownership, :only => [:approve, :deny]
 
   def new
     #needs to build but not save a new cat
@@ -11,14 +12,26 @@ class CatRentalRequestsController < ApplicationController
   end
 
   def approve
-    @rental_request = CatRentalRequest.find(params[:id])
-    @rental_request.approve!
-    redirect_to cat_url(@rental_request.cat)
+    if @rental_request.approve!
+      redirect_to cat_url(@rental_request.cat)
+    else
+      flash[:error] = "Overlapping bookings!"
+      redirect_to cat_url(@rental_request.cat)
+    end
   end
 
   def deny
-    @rental_request = CatRentalRequest.find(params[:id])
     @rental_request.deny!
     redirect_to cat_url(@rental_request.cat)
+  end
+
+  private
+
+  def require_ownership
+    @rental_request = CatRentalRequest.find(params[:id])
+    unless @rental_request.cat_owner.id == current_user.id
+      flash[:error] = "Cannot edit someone else's cat!"
+      redirect_to cat_url(@rental_request.cat)
+    end
   end
 end

@@ -7,14 +7,26 @@
   <!--<%= csrf_meta_tags %>-->
 </head>
 <body>
+
+  <input
+    name="authenticity_token"
+    type="hidden"
+    value="<%= form_authenticity_token %>">
+
 <% if flash[:notice] %>
   <p class="notice"><%= flash[:notice] %></p>
 <% end %>
 <% if flash[:error] %>
   <p class="error"><%= flash[:error] %></p>
 <% end %>
+<% if !!current_user %>
+  <%= button_to "Logout", session_url(69), :method => :delete  %>
+<% else %>
+  <%= link_to "Login", new_session_url %>
+<% end %>
 
 <%= yield %>
+
 
 </body>
 </html>

@@ -1,6 +1,16 @@
 <form action="<%= @cat.persisted? ? cat_url(@cat) : cats_url %>" method="POST" name=:cat>
 
-  <% if @cat.persisted? %> <input type="hidden" name="_method" value="PUT"> <% end %>
+  <% if @cat.persisted? %>
+    <input
+      type="hidden"
+      name="_method"
+      value="PUT">
+  <% end %>
+
+  <input
+    name="authenticity_token"
+    type="hidden"
+    value="<%= form_authenticity_token %>">
 
 <p><label for="cat_name">Name:</label></p>
 <p><input name="cat[name]" id="cat_name" type="text" value="<%= @cat.name ? @cat.name : "Name" %>"></p>
